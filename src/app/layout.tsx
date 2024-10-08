@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Recursive } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from 'react-hot-toast';
+import Providers from "@/components/Providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,6 +17,8 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+
+const recursive = Recursive({subsets: ['latin']})
 
 export const metadata: Metadata = {
   title: "Case Cobra",
@@ -28,11 +33,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${recursive.className}`}
       >
         <Navbar />
-        {children}
+        <main className="flex flex-col min-h-[calc(100vh-3.5rem-1px)] grainy-light">
+          <div className="flex-1 flex flex-col h-full">
+            <Providers>
+              {children}
+            </Providers>
+          </div>
         <Footer />
+        </main>
+        <Toaster />
       </body>
     </html>
   );
