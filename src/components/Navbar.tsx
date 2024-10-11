@@ -11,7 +11,7 @@ const Navbar: FC = async ({}) => {
   const { getUser } = getKindeServerSession();
 
   const user = await getUser();
-  console.log(user?.email);
+
   const isAdmin = user?.email === process.env.ADMIN_EMAIL;
 
 
@@ -28,7 +28,7 @@ const Navbar: FC = async ({}) => {
               <>
                 <Link href="/api/auth/logout" className={buttonVariants({size: "sm", variant: "ghost", className:"!text-sm" })}>Sign out</Link>
                 {
-                  isAdmin && <Link href="/admin/dashboard" className={buttonVariants({size: "sm", variant: "ghost", className:"!text-sm" })}>Dashboard ✨</Link>
+                  isAdmin && <Link href="/dashboard" className={buttonVariants({size: "sm", variant: "ghost", className:"!text-sm" })}>Dashboard ✨</Link>
                 }
                 <Link href="/configure/upload" className={buttonVariants({size: "sm", className:"!text-sm hidden sm:flex items-center gap-1 "})}>Create case<ArrowRight className='ml-1.5 h-5 w-5' /> </Link>
               </>

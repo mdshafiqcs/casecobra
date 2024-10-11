@@ -22,8 +22,6 @@ export const createCheckoutSession = async ({configId}: {configId: string}) => {
     throw new Error("You need to be logged in");
   }
 
-  console.log(user);
-
   const {material, finish} = configuration;
 
   let price = BASE_PRICE;
